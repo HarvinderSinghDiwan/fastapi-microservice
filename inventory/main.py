@@ -49,3 +49,8 @@ def create(product: Product):
 
 
 
+@app.get('/products/{pk}')
+def get(pk: str):
+    return Product.get(pk)
+
+
