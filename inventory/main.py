@@ -27,5 +27,25 @@ class Product(HashModel):
     class Meta:
         database = redis
 
+@app.get('/products')
+def all():
+    return [format(pk) for pk in Product.all_pks()]
+
+
+def format(pk: str):
+    product = Product.get(pk)
+
+    return {
+        'id': product.pk,
+        'name': product.name,
+        'price': product.price,
+        'quantity': product.quantity
+    }
+
+
+@app.post('/products')
+def create(product: Product):
+    return product.save()
+
 
 
