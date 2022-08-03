@@ -11,7 +11,7 @@ except:
 
 while True:
     try:
-        results = redis.xreadgroup(group, key, {key: '>'}, None)
+        results = red.xreadgroup(group, key, {key: '>'}, None)
 
         if results != []:
             for result in results:
